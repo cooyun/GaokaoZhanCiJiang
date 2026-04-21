@@ -5439,7 +5439,8 @@ zoom	[zuːm]	v.	快速移动，迅速前往，猛涨`;
             else { if (!appData.wrongWords.includes(session.currentWord.id)) appData.wrongWords.push(session.currentWord.id); }
             dom.optionsContainer.querySelectorAll('.option-btn').forEach(b => { b.disabled = true; if (b.textContent === correctAns) b.classList.add('correct-answer'); });
             if (wasCorrect) { btn.classList.add('correct-answer'); session.correct++; } 
-            else { btn.classList.add('wrong-answer'); dom.nextWordBtn.classList.remove('hidden'); }
+            else { btn.classList.add('wrong-answer'); dom.nextWordBtn.classList.remove('hidden'); setTimeout(() => dom.nextWordBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100); }
+            updateWordStats(session.currentWord, wasCorrect);
             updateWordStats(session.currentWord, wasCorrect);
             session.total++; if (session.type !== 'practice') session.currentIndex++;
             if (session.type === 'learnNew') saveSession(); else saveAppData();
