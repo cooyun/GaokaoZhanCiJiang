@@ -6124,6 +6124,10 @@
 			} else {
 				btn.classList.add('wrong-answer');
 				dom.nextWordBtn.classList.remove('hidden');
+				// 滚动到“下一个”按钮，确保在移动端可见
+				setTimeout(function() {
+					dom.nextWordBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				}, 100);
 			}
 			updateWordStats(session.currentWord, wasCorrect);
 			session.total++;
